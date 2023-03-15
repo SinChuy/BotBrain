@@ -9,7 +9,7 @@ openai.api_key = os.environ['OPENAI_API_KEY']
 class TwitchBot(commands.Bot):
 
     def __init__(self):
-        super().__init__(irc_token=os.environ['TMI_TOKEN'],
+        super().__init__(token=os.environ['TMI_TOKEN'],
                          client_id=os.environ['CLIENT_ID'],
                          nick=os.environ['BOT_NICK'],
                          prefix=os.environ['BOT_PREFIX'],
