@@ -1,18 +1,20 @@
 Before running this code, make sure to set the following environment variables:
 
-TMI_TOKEN: Your bot's Twitch OAuth token (starts with "oauth:")
-CLIENT_ID: Your Twitch application's Client ID
-BOT_NICK: Your bot's Twitch username (the account you created for your bot)
-BOT_PREFIX: The prefix for your bot's commands (e.g., "!")
-CHANNEL_NAME: The Twitch channel you want the bot to join
+- TMI_TOKEN: Your bot's Twitch OAuth token (starts with "oauth:")
+- CLIENT_ID: Your Twitch application's Client ID
+- BOT_NICK: Your bot's Twitch username (the account you created for your bot)
+- BOT_PREFIX: The prefix for your bot's commands (e.g., "!")
+- CHANNEL_NAME: The Twitch channel you want the bot to join
+
 You can set environment variables using a .env file and the python-dotenv library, or set them directly in your system or hosting environment.
 
 This example connects to Twitch and listens for messages, but it doesn't handle any commands yet. To add command handling, you can define command functions within the TwitchBot class using the @commands.command() decorator. For example:
 
+```
 @commands.command(name='hello')
 async def hello_command(self, ctx):
     await ctx.send(f'Hello, {ctx.author.name}!')
-
+```
 
 This command would respond with "Hello, [username]!" whenever a user types "!hello" in the chat.
 
