@@ -5,6 +5,9 @@ from twitchio.ext import commands
 # Set up OpenAI API key
 openai.api_key = os.environ['OPENAI_API_KEY']
 
+str token1 = os.environ['TMI_TOKEN']
+
+
 # Define the bot class
 class TwitchBot(commands.Bot):
 
