@@ -69,7 +69,7 @@ class TwitchBot(commands.Bot):
             return
         
         if message.content.lower() == "!clip":
-            clip_url = await self.create_clip(self, os.environ['CLIENT_ID'], os.environ['TMI_TOKEN'], '217378869')
+            clip_url = await self.create_clip(os.environ['CLIENT_ID'], os.environ['TMI_TOKEN'], "217378869")
             if clip_url:
                 await message.channel.send(f"Here's a clip of the stream: {clip_url}")
             else:
