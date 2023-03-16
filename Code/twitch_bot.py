@@ -7,7 +7,8 @@ import requests
 openai.api_key = os.environ['OPENAI_API_KEY']
 
 token1 = os.environ['TMI_TOKEN']
-
+client = os.environ['CLIENT_ID']
+broadcaster = "217378869"
 
 # Define the bot class
 class TwitchBot(commands.Bot):
@@ -48,12 +49,12 @@ class TwitchBot(commands.Bot):
     async def event_ready(self):
         print(f'{os.environ["BOT_NICK"]} has connected to Twitch!')
     
-    async def create_clip(self, client_id, oauth_token, broadcaster_id):
+    async def create_clip(self, client, token1, broadcaster):
         headers = {
-            "Client-ID": client_id,
-            "Authorization": f"Bearer {oauth_token}"
+            "Client-ID": client,
+            "Authorization": f"Bearer {token1}"
         }
-        url = f"https://api.twitch.tv/helix/clips?broadcaster_id={broadcaster_id}"
+        url = f"https://api.twitch.tv/helix/clips?broadcaster_id={broadcaster}"
         response = requests.post(url, headers=headers)
 
         if response.status_code == 202:
@@ -65,9 +66,10 @@ class TwitchBot(commands.Bot):
     async def event_message(self, message):
         # Ignore messages from the bot itself
         clip_url = ""
-        if message.author.name == os.environ['BOT_NICK'].lower():
+        if message.echo:
             return
         
+        print(message.content)
         if message.content.lower() == "!clip":
             clip_url = await self.create_clip(os.environ['CLIENT_ID'], os.environ['TMI_TOKEN'], "217378869")
             if clip_url:
